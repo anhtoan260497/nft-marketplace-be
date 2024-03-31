@@ -1,7 +1,7 @@
-const walletRoute = require('./wallet')
+const nftRoutes = require('./nfts')
 
 const routes = (app) => {
- app.use('/wallet', walletRoute)
+ app.use('/nft', nftRoutes)
 }
 
 module.exports = routes

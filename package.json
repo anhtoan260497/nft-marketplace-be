@@ -8,6 +8,7 @@
     "mongodb": "^6.5.0"
   },
   "devDependencies": {
+    "ethers": "^6.11.1",
     "mongoose": "^8.2.3",
     "moralis": "^2.25.2",
     "nodemon": "^3.1.0"

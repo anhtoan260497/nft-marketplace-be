@@ -1,37 +1,32 @@
+const { createStream } = require("../helper");
+
 const Moralis = require("moralis").default;
 
-const runApp = async () => {
+const runMoralis = async () => {
+
+    const webhookUrl = 'https://47b1-14-161-6-134.ngrok-free.app'
+    const nftMarketplaceContractAddress = '0x022D9Aa94E047E3D9b5F9e6813cA394ef01e5C99'
+
     await Moralis.start({
         apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjkyYTg3YmRmLTFhM2QtNDlhMy1iYmQxLTY2M2M3ZjdhODk2MSIsIm9yZ0lkIjoiMzg0MDMzIiwidXNlcklkIjoiMzk0NTk2IiwidHlwZSI6IlBST0pFQ1QiLCJ0eXBlSWQiOiJmODYwODg1ZS0xOTcxLTRkMTAtYWM3Ny1jZTU5NzAyY2U5M2QiLCJpYXQiOjE3MTEwOTc1NzAsImV4cCI6NDg2Njg1NzU3MH0.pSGg0H0xfvkm7MsRsbr2z-VSB0XVtor3OfZy4Kdeznc",
     });
 
-    // const response = await Moralis.Streams.add({
-    //     webhookUrl: "https://f876-14-226-242-4.ngrok-free.app", // replace with your own webhook URL
-    //     description: "basic_nft",
-    //     tag: "mint-basic-nft",
-    //     chains: ["0xaa36a7"],
-    //     includeContractLogs: true
-    // });
+    await createStream(['0xaa36a7'], 'stream watch list item event', 'NFT list item event',
+        'ItemList(address,address, uint256, uint256)', `${webhookUrl}/nft/list-item`, nftMarketplaceContractAddress, 'list item')
 
-    // const moralisResponse = await Moralis.Streams.addAddress({
-    //     id: response.toJSON().id, // stream ID from the previous snippet,
-    //     address: ['0xA016E19e63Bc24416350A33E7CD42EcbC0167229'],
-    // });
-    const response = await Moralis.EvmApi.nft.getNFTMetadata({
-        "chain": "0xaa36a7",
-        "format": "decimal",
-        "normalizeMetadata": true,
-        "mediaItems": false,
-        "address": "0xA016E19e63Bc24416350A33E7CD42EcbC0167229",
-        "tokenId": "1"
-      });
+    // await createStream(['0xaa36a7'], 'stream watch buy item event', 'NFT buy item event',
+    //     'ItemBought(address,address, uint256, uint256)', webhookUrl, nftMarketplaceContractAddress, 'buy item')
 
+    // await createStream(['0xaa36a7'], 'stream watch update item event', 'NFT update item event',
+    //     'ItemUpdate(address, uint256, address, uint256)', webhookUrl, nftMarketplaceContractAddress, 'update item')
 
-
-    console.log(response.raw)
-    
-
-    
+    // await createStream(['0xaa36a7'], 'stream watch cancel item event', 'NFT cancel item event',
+    //     'ItemCancel(address, uint256, address)', webhookUrl, nftMarketplaceContractAddress, 'cancel item')
 };
 
-runApp();
+module.exports = runMoralis
+
+
+
+
+
