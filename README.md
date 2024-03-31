@@ -1,4 +1,5 @@
-flow 
+# Docs and Endpoint of API NFT Marketplace
 
+**Get all list item by chainId**
 
-Front End => Mint => Back End => Call Moralis => Moralis fireback a log => Backend update Database => Backend send back data for Front end => Front End updated
+> https://cosmic-brightly-lobster.ngrok-free.app/nft/list-item/:chainId
