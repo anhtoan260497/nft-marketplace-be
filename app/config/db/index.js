@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const connect = async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/hardhat-network-marketplace',{
+    await mongoose.connect('mongodb://localhost:27017/nft-marketplace',{
       // useNewUrlParser: true,
       // useUnfiedTopology: true
     })
