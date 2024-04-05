@@ -1249,6 +1249,11 @@ mongodb@^6.5.0:
     bson "^6.4.0"
     mongodb-connection-string-url "^3.0.0"
 
+mongoose-delete@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/mongoose-delete/-/mongoose-delete-1.0.2.tgz#9bc38773ee0c811864dc3d3dfff1fe8745a306c7"
+  integrity sha512-W+p9ULLiYHcEz77wQECp6gNnh2NcXf30KRIE3nAyjjsStqmBKJDL5eXTnX0xerGG2gCGx6mI7bO3+ch88tQ+tg==
+
 mongoose@^8.2.3:
   version "8.2.3"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-8.2.3.tgz#26c2074b0d65fa83fa2fd899d3327a2a820fd4c8"
