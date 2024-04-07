@@ -45,19 +45,58 @@ class listItemControler {
             if (restoreFlag) return;
             restoreFlag = setTimeout(async () => {
                 const item = await ListedItemModel.findOne({ tokenId: parseData[0].tokenId, chainId: req.body.chainId, nftAddress: parseData[0].NftAddress })
-                if(item) await item.restore()
-            }, 1800000);
+                if (item) await item.restore()
+            }, 3600000);
 
             return
         }
 
         if (req.body.confirmed) {
-            if(restoreFlag) clearTimeout(restoreFlag)
+            if (restoreFlag) clearTimeout(restoreFlag)
             const parseData = decodeLogs(req.body)
             await ListedItemModel.deleteOne({ tokenId: parseData[0].tokenId, chainId: req.body.chainId, nftAddress: parseData[0].NftAddress })
         }
         res.send('Done')
     }
+
+    async updateItem(req, res) {
+        const parseData = decodeLogs(req.body)
+        const item = await ListedItemModel.findOne({ chainId: req.body.chainId, nftAddress: parseData[0].nftAddress, tokenId: formatEtherCustom(parseData[0].tokenId) })
+        if (!req.body.confirmed) {
+            item.delete()
+        }
+
+        if (req.body.confirmed) {
+            item.restore()
+            await ListedItemModel.findOneAndUpdate({ tokenId: formatEtherCustom(parseData[0].tokenId), chainId: req.body.chainId, nftAddress: parseData[0].nftAddress }, {
+                price: parseData[0].newPrice,
+                priceFormat: formatEtherCustom(parseData[0].newPrice, 18)
+            })
+        }
+        res.send('Done')
+    }
+
+    async cancelItem(req, res) {
+        const parseData = decodeLogs(req.body)
+        let restoreFlag = null
+        const item = await ListedItemModel.findOne({ chainId: req.body.chainId, nftAddress: parseData[0].nftAddress, tokenId: formatEtherCustom(parseData[0].tokenId) })
+        if (!req.body.confirmed) {
+            item.delete()
+            if (restoreFlag) return;
+            restoreFlag = setTimeout(async () => {
+                const item = await ListedItemModel.findOne({ tokenId: parseData[0].tokenId, chainId: req.body.chainId, nftAddress: parseData[0].NftAddress })
+                if (item) await item.restore()
+            }, 3600000);
+        }
+
+        if (req.body.confirmed) {
+            if (restoreFlag) clearTimeout(restoreFlag)
+            await ListedItemModel.findOneAndDelete({ tokenId: formatEtherCustom(parseData[0].tokenId), chainId: req.body.chainId, nftAddress: parseData[0].nftAddress })
+        }
+
+        res.send('Done')
+    }
 }
+
 
 module.exports = new listItemControler
