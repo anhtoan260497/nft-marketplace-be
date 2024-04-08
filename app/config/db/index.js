@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const connect = async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/nft-marketplace',{
+    await mongoose.connect('mongodb+srv://anhtoan260497:dbuser111@nft-marketplace.66mxt7g.mongodb.net/',{
       // useNewUrlParser: true,
       // useUnfiedTopology: true
     })
@@ -12,3 +12,4 @@ const connect = async () => {
 }
 
 module.exports = { connect }
+

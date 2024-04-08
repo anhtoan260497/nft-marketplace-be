@@ -7,6 +7,7 @@ router.get('/list-item/:chainId', listItemControler.getItem)
 router.post('/buy-item', listItemControler.buyItem)
 router.post('/update-item', listItemControler.updateItem)
 router.post('/cancel-item',listItemControler.cancelItem)
+router.get('/hihi', listItemControler.hihi)
 
 
 

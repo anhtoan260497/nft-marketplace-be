@@ -96,6 +96,10 @@ class listItemControler {
 
         res.send('Done')
     }
+
+    hihi(red,res) {
+        res.send('hihi')
+    }
 }
 
 
