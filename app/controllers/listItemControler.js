@@ -36,6 +36,10 @@ class listItemControler {
 
     async buyItem(req, res) {
         let restoreFlag = null
+        if(req.body.logs.length === 0) {
+            res.send('done')
+            return
+        }
         if (!req.body.confirmed) {
             const parseData = decodeLogs(req.body)
             const item = await ListedItemModel.findOne({ tokenId: parseData[0].tokenId, chainId: req.body.chainId, nftAddress: parseData[0].NftAddress })
@@ -60,6 +64,10 @@ class listItemControler {
     }
 
     async updateItem(req, res) {
+        if(req.body.logs.length === 0) {
+            res.send('done')
+            return
+        }
         const parseData = decodeLogs(req.body)
         const item = await ListedItemModel.findOne({ chainId: req.body.chainId, nftAddress: parseData[0].nftAddress, tokenId: formatEtherCustom(parseData[0].tokenId) })
         if (!req.body.confirmed) {
@@ -77,6 +85,10 @@ class listItemControler {
     }
 
     async cancelItem(req, res) {
+        if(req.body.logs.length === 0) {
+            res.send('done')
+            return
+        }
         const parseData = decodeLogs(req.body)
         let restoreFlag = null
         const item = await ListedItemModel.findOne({ chainId: req.body.chainId, nftAddress: parseData[0].nftAddress, tokenId: formatEtherCustom(parseData[0].tokenId) })
