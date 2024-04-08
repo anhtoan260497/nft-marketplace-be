@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
+require('dotenv').config()
 const connect = async () => {
   try {
-    await mongoose.connect('mongodb+srv://anhtoan260497:dbuser111@nft-marketplace.66mxt7g.mongodb.net/',{
+    await mongoose.connect(`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@nft-marketplace.66mxt7g.mongodb.net/`,{
       // useNewUrlParser: true,
       // useUnfiedTopology: true
     })
