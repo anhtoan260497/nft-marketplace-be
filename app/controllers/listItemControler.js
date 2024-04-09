@@ -86,7 +86,7 @@ class listItemControler {
         res.send('Done')
     }
 
-    async cancelItem(req, res) {\
+    async cancelItem(req, res) {
         console.log('cancel item', req.body)
         if(req.body.logs.length === 0) {
             res.send('done')
