@@ -3,7 +3,7 @@ const ListedItemModel = require("../models/ListedItemModel");
 
 class listItemControler {
     async postItem(req, res) {
-        console.log('list item', req.body)
+        console.log('post item', req.body)
         try {
             if (!req.body.confirmed || req.body.logs.length === 0) {
                 res.send('done')
@@ -35,6 +35,7 @@ class listItemControler {
     }
 
     async buyItem(req, res) {
+        console.log('buy item', req.body)
         let restoreFlag = null
         if(req.body.logs.length === 0) {
             res.send('done')
@@ -64,6 +65,7 @@ class listItemControler {
     }
 
     async updateItem(req, res) {
+        console.log('update item', req.body)
         if(req.body.logs.length === 0) {
             res.send('done')
             return
@@ -85,6 +87,7 @@ class listItemControler {
     }
 
     async cancelItem(req, res) {
+        console.log('cancel item', req.body)
         if(req.body.logs.length === 0) {
             res.send('done')
             return
