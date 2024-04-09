@@ -8,7 +8,7 @@ app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 // const ngrok = require('@ngrok/ngrok')
 require('dotenv').config()
-const cors = require('cors'));
+const cors = require('cors');
 app.use(cors());
 
 routes(app)
