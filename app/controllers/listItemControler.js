@@ -112,7 +112,10 @@ class listItemControler {
         res.send('Done')
     }
 
-    hihi(red,res) {
+    async hihi(req,res) {
+
+        const listItems = await ListedItemModel.find({ chainId: req.params.chainId, deleted: false })
+        console.log(listItems)
         res.send('hihi')
     }
 }
